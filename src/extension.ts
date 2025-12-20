@@ -66,9 +66,20 @@ export function activate(context: vscode.ExtensionContext) {
     );
   }
 
-  function createScriptButtonsAndCommands(scripts: Scripts, isNpm = false) {
+  
+  function createScriptButtonsAndCommands(scripts: Scripts, isNpm = false, packageManager = 'npm') {
     for (const name in scripts) {
-      const command = isNpm ? `npm run ${name}` : scripts[name];
+      
+      let command = scripts[name];
+      
+      if (isNpm) {
+        if (packageManager === 'npm' || packageManager === 'pnpm' || packageManager === 'bun') {
+           command = `${packageManager} run ${name}`;
+        } else if (packageManager === 'yarn') {
+           command = `yarn ${name}`;
+        }
+      }
+
       const vscCommand = createVscCommand(command, name, isNpm);
 
       const color = isNpm ? 'white' : undefined;
@@ -107,17 +118,26 @@ export function activate(context: vscode.ExtensionContext) {
     registerCommands();
     createRefreshButton();
 
+    
+    const config = vscode.workspace.getConfiguration('script-buttons');
+    const pm = config.get<string>('packageManager') || 'npm';
+
     let scripts: Scripts = {};
 
     try {
       const packageJson = await getPackageJson();
       console.log('Loaded package.json!');
 
-      // npm install command
-      const vscCommand = createVscCommand('npm install', 'install', true);
-      createStatusBarItem('NPM Install', 'npm install', vscCommand, 'white');
+      
+      const installCmd = pm === 'yarn' ? 'yarn install' : `${pm} install`;
+      const vscCommand = createVscCommand(installCmd, 'install', true);
+      
+      
+      const label = pm.charAt(0).toUpperCase() + pm.slice(1);
+      createStatusBarItem(`${label} Install`, installCmd, vscCommand, 'white');
 
-      createScriptButtonsAndCommands(packageJson.scripts, true);
+      
+      createScriptButtonsAndCommands(packageJson.scripts, true, pm);
       scripts = { ...scripts, ...packageJson.scripts };
     } catch {
       console.log('No package.json found!');
@@ -151,5 +171,4 @@ export function activate(context: vscode.ExtensionContext) {
 
   init();
 }
-
 export function deactivate() {}

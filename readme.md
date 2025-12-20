@@ -1,16 +1,30 @@
 ![banner](images/banner.png)
 
-# Script Buttons for VSCode
+# Script Buttons Advanced
+
+**A generic package manager version of "Script Buttons".**
+
+This is a **fork** of the original [Script Buttons](https://marketplace.visualstudio.com/items?itemName=JackWaterfall.script-buttons) extension by JackWaterfall. It includes additional features to support modern package managers like **pnpm**, **yarn**, and **bun**, in addition to npm.
 
 Make running custom scripts easier!
 
 ## Features
 
-When a package.json file is detected in the current workspace folder a button is created on the status bar for each script. When this button is clicked it runs the script in a terminal. Only 1 instance of each script can run at a given time.
+When a `package.json` file is detected in the current workspace folder, a button is created on the status bar for each script. When this button is clicked, it runs the script in a terminal using your **preferred package manager**.
 
 ![scripts](images/scripts.png)
 
-Scripts can also be loaded in from a script-buttons.json file. Npm scripts will be white whereas non-npm scripts will be grey.
+### Multi-Package Manager Support (New!)
+Unlike the original extension which defaults to `npm`, this version allows you to switch between:
+* `npm`
+* `pnpm`
+* `yarn`
+* `bun`
+
+You can change this globally or per workspace in your VS Code settings.
+
+### Custom Scripts
+Scripts can also be loaded in from a `script-buttons.json` file. 
 
 ![scripts](images/script-buttons.json.png)
 
@@ -18,11 +32,16 @@ When no scripts can be found a warning message will be displayed.
 
 ![no-scripts](images/no-scripts.png)
 
-> Tip: If you have since added a package.json/script-buttons.json file or have modified existing scripts clicking the refresh button will attempt to find scripts again and update the buttons...
+> Tip: If you have since added a package.json/script-buttons.json file or have modified existing scripts clicking the refresh button will attempt to find scripts again and update the buttons.
 
 ## Extension Settings
 
-This extension currently has no settings.
+This extension contributes the following settings:
+
+* `script-buttons.packageManager`: Select the package manager to use for running scripts.
+    * Options: `npm` (default), `pnpm`, `yarn`, `bun`.
+
+To change this, go to **File > Preferences > Settings**, search for "Script Buttons", and choose your preferred tool from the dropdown.
 
 ## Known Issues
 
@@ -30,14 +49,21 @@ There are currently no known issues.
 
 ## Release Notes
 
-### 1.1.1
+### 1.0.0 (Fork Release)
+* Forked from original `Script Buttons` v1.1.1.
+* Added `configuration` to package.json for selecting package managers.
+* Added logic to support `pnpm`, `yarn`, and `bun` commands.
+* Updated status bar labels to reflect the active package manager.
 
+---
+
+### Original History (JackWaterfall)
+
+**1.1.1**
 Added an NPM install button if a package.json file is detected.
 
-### 1.1.0
-
+**1.1.0**
 Added the ability to define scripts without a package.json file, this is done using a script-buttons.json file.
 
-### 1.0.0
-
+**1.0.0**
 Initial release.

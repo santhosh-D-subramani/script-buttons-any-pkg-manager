@@ -1,13 +1,13 @@
 {
-  "name": "script-buttons",
-	"displayName": "Script Buttons",
-	"publisher": "JackWaterfall",
+  "name": "script-buttons-adv",
+	"displayName": "Script Buttons Advanced",
+	"publisher": "santhoshDsubramani",
 	"repository": {
-		"type": "git",
-		"url": "https://github.com/jwaterfall/script-buttons.git"
-	},
+    "type": "git",
+    "url": "https://github.com/santhosh-D-subramani/script-buttons-any-pkg-manager.git"
+  },
 	"description": "",
-	"version": "1.1.1",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
@@ -16,6 +16,9 @@
 	],
 	"keywords": [
 		"npm",
+		"bun",
+		"pnpm",
+		"yarn",
 		"node",
 		"script",
 		"scripts",
@@ -32,13 +35,29 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "script-buttons.refreshScripts",
-				"title": "Refetch the scripts from your package.json file"
-			}
-		]
-	},
+    "commands": [
+        {
+            "command": "script-buttons.refreshScripts",
+            "title": "Refetch the scripts from your package.json file"
+        }
+    ],
+    "configuration": {
+        "title": "Script Buttons",
+        "properties": {
+            "script-buttons.packageManager": {
+                "type": "string",
+                "default": "npm",
+                "enum": [
+                    "npm",
+                    "pnpm",
+                    "yarn",
+                    "bun"
+                ],
+                "description": "Select the package manager to use (npm, pnpm, yarn, bun)."
+            }
+        }
+    }
+},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
