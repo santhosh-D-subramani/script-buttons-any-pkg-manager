@@ -1,13 +1,13 @@
 {
-  "name": "script-buttons-adv",
-	"displayName": "Script Buttons Advanced",
+	"name": "script-buttons-adv",
+	"displayName": "Universal Script Buttons",
 	"publisher": "santhoshDsubramani",
 	"repository": {
-    "type": "git",
-    "url": "https://github.com/santhosh-D-subramani/script-buttons-any-pkg-manager.git"
-  },
-	"description": "",
-	"version": "1.0.0",
+		"type": "git",
+		"url": "https://github.com/santhosh-D-subramani/script-buttons-any-pkg-manager.git"
+	},
+	"description": "Run scripts using npm, pnpm, yarn, or bun directly from the status bar. An enhanced fork of 'Script Buttons'.",
+	"version": "1.0.1",
 	"engines": {
 		"vscode": "^1.63.0"
 	},
@@ -29,35 +29,35 @@
 		"package.json",
 		"script-buttons.json"
 	],
-	"icon": "images/icon.png",
+	"icon": "images/universal_icon.png",
 	"activationEvents": [
-        "onStartupFinished"
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-    "commands": [
-        {
-            "command": "script-buttons.refreshScripts",
-            "title": "Refetch the scripts from your package.json file"
-        }
-    ],
-    "configuration": {
-        "title": "Script Buttons",
-        "properties": {
-            "script-buttons.packageManager": {
-                "type": "string",
-                "default": "npm",
-                "enum": [
-                    "npm",
-                    "pnpm",
-                    "yarn",
-                    "bun"
-                ],
-                "description": "Select the package manager to use (npm, pnpm, yarn, bun)."
-            }
-        }
-    }
-},
+		"commands": [
+			{
+				"command": "script-buttons.refreshScripts",
+				"title": "Refetch the scripts from your package.json file"
+			}
+		],
+		"configuration": {
+			"title": "Script Buttons",
+			"properties": {
+				"script-buttons.packageManager": {
+					"type": "string",
+					"default": "npm",
+					"enum": [
+						"npm",
+						"pnpm",
+						"yarn",
+						"bun"
+					],
+					"description": "Select the package manager to use (npm, pnpm, yarn, bun)."
+				}
+			}
+		}
+	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",

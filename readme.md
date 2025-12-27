@@ -1,10 +1,12 @@
-![banner](images/banner.png)
 
-# Script Buttons Advanced
 
-**A generic package manager version of "Script Buttons".**
+# Universal Script Buttons
 
-This is a **fork** of the original [Script Buttons](https://marketplace.visualstudio.com/items?itemName=JackWaterfall.script-buttons) extension by JackWaterfall. It includes additional features to support modern package managers like **pnpm**, **yarn**, and **bun**, in addition to npm.
+> **DISCLAIMER:** This extension is a **fork** of the original [Script Buttons](https://marketplace.visualstudio.com/items?itemName=JackWaterfall.script-buttons) by JackWaterfall. It is maintained electronically by a separate author to provide additional support for multiple package managers (**pnpm**, **yarn**, **bun**) which are not available in the original version. This is **not** the original extension.
+
+**A generic, multi-manager version of "Script Buttons".**
+
+This extension builds upon the ease of use of the original but extends it to the modern JavaScript ecosystem. It automatically detects your scripts and lets you run them with your preferred tool.
 
 Make running custom scripts easier!
 
